@@ -12,13 +12,21 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     
     <script type="text/babel">
-        <input placeholder="Send a message to Chatbot" size="25" />;
-        <button>Send</button>;
+        function ChatInput() {
+            return (
+                <div>
+                    <input placeholder="Send a message to Chatbot" size="25" />
+                    <button>Send</button>
+                </div>
+            )
+        }
+        
+        
+
 
         const div = (
             <div>
-                <input placeholder="Send a message to Chatbot" size="25" />
-                <button>Send</button>
+                <ChatInput />
             </div>
         );
 
