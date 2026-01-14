@@ -14,10 +14,10 @@
     <script type="text/babel">
         function ChatInput() {
             return (
-                <div>
+                <>
                     <input placeholder="Send a message to Chatbot" size="25" />
                     <button>Send</button>
-                </div>
+                </>
             )
         }
         
@@ -25,9 +25,9 @@
 
 
         const div = (
-            <div>
+            <>
                 <ChatInput />
-            </div>
+            </>
         );
 
       const container = document.querySelector('.js-container');
