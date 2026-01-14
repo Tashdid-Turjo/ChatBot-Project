@@ -12,7 +12,19 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     
     <script type="text/babel">
-      
+        <input placeholder="Send a message to Chatbot" size="25" />;
+        <button>Send</button>;
+
+        const div = (
+            <div>
+                <input placeholder="Send a message to Chatbot" size="25" />
+                <button>Send</button>
+            </div>
+        );
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(div);
+
 
     </script>
   </body>
