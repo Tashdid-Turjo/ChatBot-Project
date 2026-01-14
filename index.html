@@ -21,7 +21,9 @@
             )
         }
         
-        function ChatMessage() {
+        function ChatMessage(props) {
+            console.log(props);
+            
             return (
                 <>
                     <p>hello Chatbot</p>
@@ -34,7 +36,7 @@
         const div = (
             <>
                 <ChatInput />
-                <ChatMessage />
+                <ChatMessage message="hello chatbot" />
             </>
         );
 
