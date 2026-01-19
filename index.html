@@ -41,30 +41,33 @@
             )
         }
 
-        const div = (
-            <>
-                <ChatInput />
-                <ChatMessage 
-                    message="hello chatbot" 
-                    sender="user" 
-                />
-                <ChatMessage 
-                    message="hello! How can I help you?"
-                    sender="robot" 
-                />
-                <ChatMessage 
-                    message="can you get me todays date?" 
-                    sender="user" 
-                />
-                <ChatMessage 
-                    message="Today is 14 January." 
-                    sender="robot" 
-                />
-            </>
-        );
+        // TODO: When used variable instead of this component, the variable name was div (that variable name should be app. So don't get confused about naming of previously used div variable & now using App component.)
+        function App() {
+            return (
+                <>
+                    <ChatInput />
+                    <ChatMessage 
+                        message="hello chatbot" 
+                        sender="user" 
+                    />
+                    <ChatMessage 
+                        message="hello! How can I help you?"
+                        sender="robot" 
+                    />
+                    <ChatMessage 
+                        message="can you get me todays date?" 
+                        sender="user" 
+                    />
+                    <ChatMessage 
+                        message="Today is 14 January." 
+                        sender="robot" 
+                     />
+                </>
+            )
+        }
 
       const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(div);
+      ReactDOM.createRoot(container).render(<App />);
 
     </script>
   </body>
