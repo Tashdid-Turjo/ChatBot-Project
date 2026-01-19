@@ -11,10 +11,13 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     <script type="text/babel">
-      function ProductDetails({ name, price, discountPrice }) {
+      function ProductDetails({ name, price, discountPrice, imageSrc }) {
         return (
           <>
             <p>{name}</p>
+            <div>
+                <img src={imageSrc} width="100" />
+            </div>
             {!discountPrice && (
               <p>Price: ${price}</p>
             )}
@@ -36,14 +39,17 @@
                     name="sock"
                     price="10"
                     discountPrice="5"
+                    imageSrc="cotton-socks.png"
                 />
                 <ProductDetails
                     name="tennis"
                     price="6"
+                    imageSrc="tennis-balls.png"
                 />
                 <ProductDetails
                     name="tshirt"
                     price="7"
+                    imageSrc="plain-t-shirt.png"
                 />
             </>
         );
