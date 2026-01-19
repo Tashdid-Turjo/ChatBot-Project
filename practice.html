@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Re</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      function ProductDetails({ name, price, discountPrice }) {
+        return (
+          <>
+            <p>{name}</p>
+            {!discountPrice && (
+              <p>Price: ${price}</p>
+            )}
+            {discountPrice && (
+                <>
+                    <p><del>Price: ${price}</del></p>
+                    <p>Discount price: ${discountPrice}</p>
+                </>
+            )}      
+            <button>Add to Cart</button>
+          </>
+        );
+      }
+
+      function App() {
+        return (
+            <>
+                <ProductDetails 
+                    name="sock"
+                    price="10"
+                    discountPrice="5"
+                />
+                <ProductDetails
+                    name="tennis"
+                    price="6"
+                />
+                <ProductDetails
+                    name="tshirt"
+                    price="7"
+                />
+            </>
+        );
+      }
+
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+    </script>
+  </body>
+</html>
