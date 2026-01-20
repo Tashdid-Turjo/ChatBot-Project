@@ -40,39 +40,51 @@
             )
         }
 
-        function App() {
+
+        function ChatMessages() {
             // Instead of manually typing <ChatMessage message="hello chatbot" sender="user"........ etc., we will use js to generate these components. We will use variable, in that, will use array & inside that, we will use object inside array.
             const chatMessages = [{
-                message: 'hello chatbot',
-                sender: 'user'    
+                message: 'hello chatbot',           // Inside this array, for this object's key-value pair, I can give whatever name i want for key part. So this message, sender, id can be any name.
+                sender: 'user',
+                id: 'id1' 
             }, {
                 message: 'hello! How can I help you?',
-                sender: 'robot'
+                sender: 'robot',
+                id: 'id2'
             }, {
                 message: 'can you get me todays date?',
-                sender: 'user'
+                sender: 'user',
+                id: 'id3'
             }, {
                 message: 'Today is 14 January',
-                sender: 'robot'
+                sender: 'robot',
+                id: 'id4'
             }];
-
-            // Will use JS to convert this upper code's data into these components.
 
             return (
                 <>
-                    <ChatInput />
                     {chatMessages.map((chatMessage) => {
                         return (
                             <ChatMessage
-                                message = {chatMessage.message}
-                                sender = {chatMessage.sender}
+                                message={chatMessage.message}   // Here, these " message, sender, key " are attributes. " message, sender " name must be same like chatMessages function's props.
+                                sender={chatMessage.sender}
+                                key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
                             />
                         );
                     })}
                 </>
             );
         }
-        
+
+        function App() {
+            // Will use JS to convert this upper code's data into these components.
+            return (
+                <>
+                    <ChatInput />
+                    <ChatMessages />
+                </>
+            );
+        }
 
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
