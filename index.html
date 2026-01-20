@@ -26,7 +26,6 @@
             )
         }
         
-        
         function ChatMessage({ message, sender }) {
             return (
                 <div>
@@ -41,8 +40,24 @@
             )
         }
 
-        // TODO: When used variable instead of this component, the variable name was div (that variable name should be app. So don't get confused about naming of previously used div variable & now using App component.)
         function App() {
+            // Instead of manually typing <ChatMessage message="hello chatbot" sender="user"........ etc., we will use js to generate these components. We will use variable, in that, will use array & inside that, we will use object inside array.
+            const ChatMessages = [{
+                message: 'hello chatbot',
+                sender: 'user'    
+            }, {
+                message: 'hello! How can I help you?',
+                sender: 'robot'
+            }, {
+                message: 'can you get me todays date?',
+                sender: 'user'
+            }, {
+                message: 'Today is 14 January',
+                sender: 'robot'
+            }];                                        
+
+
+            //////////////////// This will be omitted soon. /////////////////////////
             return (
                 <>
                     <ChatInput />
@@ -64,6 +79,7 @@
                      />
                 </>
             )
+            //////////////////// This will be omitted soon. /////////////////////////
         }
 
       const container = document.querySelector('.js-container');
