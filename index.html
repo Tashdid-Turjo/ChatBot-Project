@@ -56,24 +56,21 @@
                 sender: 'robot'
             }];
 
-            // Will use JS to convert this upper code's data into these components.  
-            const chatMessageComponents = chatMessages.map((chatMessage) => {
-                return (
-                    <ChatMessage
-                        message = {chatMessage.message}
-                        sender = {chatMessage.sender}
-                    />
-                );
-            });
+            // Will use JS to convert this upper code's data into these components.
 
-            //////////////////// This 'ChatMessage' part will be omitted. /////////////////////////
             return (
                 <>
                     <ChatInput />
-                    {chatMessageComponents}
+                    {chatMessages.map((chatMessage) => {
+                        return (
+                            <ChatMessage
+                                message = {chatMessage.message}
+                                sender = {chatMessage.sender}
+                            />
+                        );
+                    })}
                 </>
-            )
-            //////////////////// This will be omitted soon. /////////////////////////
+            );
         }
 
       const container = document.querySelector('.js-container');
