@@ -42,7 +42,7 @@
 
         function App() {
             // Instead of manually typing <ChatMessage message="hello chatbot" sender="user"........ etc., we will use js to generate these components. We will use variable, in that, will use array & inside that, we will use object inside array.
-            const ChatMessages = [{
+            const chatMessages = [{
                 message: 'hello chatbot',
                 sender: 'user'    
             }, {
@@ -54,29 +54,23 @@
             }, {
                 message: 'Today is 14 January',
                 sender: 'robot'
-            }];                                        
+            }];
 
+            // Will use JS to convert this upper code's data into these components.  
+            const chatMessageComponents = chatMessages.map((chatMessage) => {
+                return (
+                    <ChatMessage
+                        message = {chatMessage.message}
+                        sender = {chatMessage.sender}
+                    />
+                );
+            });
 
-            //////////////////// This will be omitted soon. /////////////////////////
+            //////////////////// This 'ChatMessage' part will be omitted. /////////////////////////
             return (
                 <>
                     <ChatInput />
-                    <ChatMessage 
-                        message="hello chatbot" 
-                        sender="user" 
-                    />
-                    <ChatMessage 
-                        message="hello! How can I help you?"
-                        sender="robot"
-                    />
-                    <ChatMessage 
-                        message="can you get me todays date?" 
-                        sender="user" 
-                    />
-                    <ChatMessage 
-                        message="Today is 14 January." 
-                        sender="robot" 
-                     />
+                    {chatMessageComponents}
                 </>
             )
             //////////////////// This will be omitted soon. /////////////////////////
