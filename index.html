@@ -61,8 +61,16 @@
                 id: 'id4'
             }];
 
+            // This one is function, not component. As it's a camel-case, not pascal-case.
+            function sendMessage() {
+                console.log('send message');
+            }
+
             return (
                 <>
+                    {/* Called sendMessage function. Here, onClick -> Event & sendMessage -> Event Handler that handles that event. */}
+                    <button onClick={sendMessage}>Send Message</button>
+
                     {chatMessages.map((chatMessage) => {
                         return (
                             <ChatMessage
