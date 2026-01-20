@@ -63,7 +63,14 @@
 
             // This one is function, not component. As it's a camel-case, not pascal-case.
             function sendMessage() {
-                console.log('send message');
+                // Inside ChatMessages variable, will push(that will add in the last) another object.
+                chatMessages.push({
+                    message: 'Yo',
+                    sender: 'user',
+                    id: crypto.randomUUID()     // Here, it can't be " id: 'id5' ". Bcz, everytime i click the button, it will create same id. Thus, JS has this special unique id string.
+                });
+
+                console.log(chatMessages);
             }
 
             return (
