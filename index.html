@@ -42,7 +42,8 @@
 
 
         function ChatMessages() {
-            // Instead of manually typing <ChatMessage message="hello chatbot" sender="user"........ etc., we will use js to generate these components. We will use variable, in that, will use array & inside that, we will use object inside array.
+            // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage.
+
             const chatMessages = [{
                 message: 'hello chatbot',           // Inside this array, for this object's key-value pair, I can give whatever name i want for key part. So this message, sender, id can be any name.
                 sender: 'user',
@@ -73,7 +74,7 @@
                 console.log(chatMessages);
             }
 
-            
+
             return (
                 <>
                     {/* Called sendMessage function. Here, onClick -> Event & sendMessage -> Event Handler that handles that event. */}
