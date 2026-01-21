@@ -42,7 +42,8 @@
 
         function ChatMessages() {
             // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage. Using React.useState(), if we update its inside data, it will also update the HTML. React.useState() returns an array.
-            const array = React.useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
+            // Did Array Destructuring:
+            const [chatMessages, setChatMessages] = React.useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
                 message: 'hello chatbot',
                 sender: 'user',
                 id: 'id1'
@@ -60,8 +61,8 @@
                 id: 'id4'
             }]);
 
-            const chatMessages = array[0];                  // array[0] is current data which is first value of useState.
-            const setChatMessages = array[1];               // array[1] is the second value which is a function to update this data. This updater function will update the HTML.
+            // const chatMessages = array[0];                  // array[0] is current data which is first value of useState.
+            // const setChatMessages = array[1];               // array[1] is the second value which is a function to update this data. This updater function will update the HTML.
 
             // This one is function, not component. As it's a camel-case, not pascal-case.
             function sendMessage() {                        // sendMessage() is the -> Updater Function.
