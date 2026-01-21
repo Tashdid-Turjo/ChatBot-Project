@@ -13,12 +13,9 @@
     
     <script type="text/babel">
         function ChatInput() {
-            const [inputText, setInputText] = React.useState('');
-            
             function saveInputText(event) {
                 // .value -> get the text inside the " input placeholder=............... ".
-                setInputText(event.target.value);            // It will show all text for each & every moment that we type in the console.
-                console.log(inputText);
+                console.log(event.target.value);            // It will show all text for each & every moment that we type in the console.
             }
 
             return (
