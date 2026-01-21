@@ -40,14 +40,12 @@
             )
         }
 
-
         function ChatMessages() {
-            // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage.
-
-            const chatMessages = [{
-                message: 'hello chatbot',           // Inside this array, for this object's key-value pair, I can give whatever name i want for key part. So this message, sender, id can be any name.
+            // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage. Using React.useState(), if we update its inside data, it will also update the HTML. React.useState() returns an array.
+            const array = React.useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
+                message: 'hello chatbot',
                 sender: 'user',
-                id: 'id1' 
+                id: 'id1'
             }, {
                 message: 'hello! How can I help you?',
                 sender: 'robot',
@@ -60,24 +58,26 @@
                 message: 'Today is 14 January',
                 sender: 'robot',
                 id: 'id4'
-            }];
+            }]);
+
+            const chatMessages = array[0];                  // array[0] is current data which is first value of useState.
+            const setChatMessages = array[1];               // array[1] is the second value which is a function to update this data. This updater function will update the HTML.
 
             // This one is function, not component. As it's a camel-case, not pascal-case.
-            function sendMessage() {
-                // Inside ChatMessages variable, will push(that will add in the last) another object.
-                chatMessages.push({
-                    message: 'Yo',
+            function sendMessage() {                        // sendMessage() is the -> Updater Function.
+                setChatMessages([
+                    ...chatMessages,                        // Will copy that array into this new array.
+                    {                                       // Added a new value with some key-value pairs into this new array.
+                    message: 'test',
                     sender: 'user',
-                    id: crypto.randomUUID()     // Here, it can't be " id: 'id5' ". Bcz, everytime i click the button, it will create same id. Thus, JS has this special unique id string.
-                });
-
-                console.log(chatMessages);
+                    id: crypto.randomUUID()
+                    }
+                ]);
             }
-
 
             return (
                 <>
-                    {/* Called sendMessage function. Here, onClick -> Event & sendMessage -> Event Handler that handles that event. */}
+                    {/* Called sendMessage function. Here, onClick is Event & sendMessage is Event Handler that handles that onClick event. */}
                     <button onClick={sendMessage}>Send Message</button>
 
                     {chatMessages.map((chatMessage) => {
