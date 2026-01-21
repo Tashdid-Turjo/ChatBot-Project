@@ -13,11 +13,17 @@
     
     <script type="text/babel">
         function ChatInput() {
+            function saveInputText(event) {
+                // .value -> get the text inside the " input placeholder=............... ".
+                console.log(event.target.value);            // It will show all text for each & every moment that we type in the console.
+            }
+
             return (
                 <>
                     <input 
-                        placeholder="Send a message to Chatbot" 
-                        size="25" 
+                        placeholder="Send a message to Chatbot"
+                        size="25"
+                        onChange={saveInputText}            // Putting the function inside this input tag.
                     />
                     <button>
                         Send
