@@ -18,6 +18,10 @@
             function saveInputText(event) {
                 // .value -> get the text inside the " input placeholder=............... ".
                 setInputText(event.target.value);            // It will show all text for each & every moment that we type in the console.
+                // console.log(inputText);
+            }
+
+            function sendMessage() {
                 console.log(inputText);
             }
 
@@ -28,9 +32,9 @@
                         size="25"
                         onChange={saveInputText}            // Putting the function inside this input tag.
                     />
-                    <button>
-                        Send
-                    </button>
+                    <button
+                        onClick={sendMessage}
+                    >Send</button>
                 </>
             )
         }
