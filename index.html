@@ -22,7 +22,15 @@
             }
 
             function sendMessage() {
-                console.log(inputText);
+                // It was inside ChatMessage component before (did for practice purpose). Now, removed inside ChatMessage component's setChatMessages & button tag.
+                setChatMessages([
+                    ...chatMessages,                        // Will copy that array into this new array.
+                    {                                       // Added a new value with some key-value pairs into this new array.
+                    message: 'test',
+                    sender: 'user',
+                    id: crypto.randomUUID()
+                    }
+                ]);
             }
 
             return (
@@ -77,23 +85,8 @@
             // const chatMessages = array[0];                  // array[0] is current data which is first value of useState.
             // const setChatMessages = array[1];               // array[1] is the second value which is a function to update this data. This updater function will update the HTML.
 
-            // This one is function, not component. As it's a camel-case, not pascal-case.
-            function sendMessage() {                        // sendMessage() is the -> Updater Function.
-                setChatMessages([
-                    ...chatMessages,                        // Will copy that array into this new array.
-                    {                                       // Added a new value with some key-value pairs into this new array.
-                    message: 'test',
-                    sender: 'user',
-                    id: crypto.randomUUID()
-                    }
-                ]);
-            }
-
             return (
                 <>
-                    {/* Called sendMessage function. Here, onClick is Event & sendMessage is Event Handler that handles that onClick event. */}
-                    <button onClick={sendMessage}>Send Message</button>
-
                     {chatMessages.map((chatMessage) => {
                         return (
                             <ChatMessage
