@@ -62,6 +62,22 @@
         }
 
         function ChatMessages() {
+            return (
+                <>
+                    {chatMessages.map((chatMessage) => {
+                        return (
+                            <ChatMessage
+                                message={chatMessage.message}   // Here, these " message, sender, key " are attributes. " message, sender " name must be same like chatMessages function's props.
+                                sender={chatMessage.sender}
+                                key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
+                            />
+                        );
+                    })}
+                </>
+            );
+        }
+
+        function App() {
             // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage. Using React.useState(), if we update its inside data, it will also update the HTML. React.useState() returns an array.
             // Did Array Destructuring:
             const [chatMessages, setChatMessages] = React.useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
@@ -84,24 +100,8 @@
 
             // const chatMessages = array[0];                  // array[0] is current data which is first value of useState.
             // const setChatMessages = array[1];               // array[1] is the second value which is a function to update this data. This updater function will update the HTML.
-
-            return (
-                <>
-                    {chatMessages.map((chatMessage) => {
-                        return (
-                            <ChatMessage
-                                message={chatMessage.message}   // Here, these " message, sender, key " are attributes. " message, sender " name must be same like chatMessages function's props.
-                                sender={chatMessage.sender}
-                                key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
-                            />
-                        );
-                    })}
-                </>
-            );
-        }
-
-        function App() {
             // Will use JS to convert this upper code's data into these components.
+           
             return (
                 <>
                     <ChatInput />
