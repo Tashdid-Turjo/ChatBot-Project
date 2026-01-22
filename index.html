@@ -12,7 +12,8 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     
     <script type="text/babel">
-        function ChatInput() {
+        // By adding these two props inside ChatInput component, this component has now access of the chatMessages & setChatMessages inside sendMessage function. It's receiving App component's inside ChatInput's 2 props.
+        function ChatInput({ chatMessages, setChatMessages }) {
             const [inputText, setInputText] = React.useState('');
             
             function saveInputText(event) {
@@ -35,7 +36,7 @@
 
             return (
                 <>
-                    <input 
+                    <input
                         placeholder="Send a message to Chatbot"
                         size="25"
                         onChange={saveInputText}            // Putting the function inside this input tag.
@@ -61,7 +62,8 @@
             )
         }
 
-        function ChatMessages() {
+        // By adding this prop inside ChatMessages component, this component has now access of the chatMessages. It's receiving App component's inside ChatMessages's props.
+        function ChatMessages({ chatMessages }) {
             return (
                 <>
                     {chatMessages.map((chatMessage) => {
@@ -104,8 +106,14 @@
            
             return (
                 <>
-                    <ChatInput />
-                    <ChatMessages />
+                    {/* Here, By App Component -> these two child component's props are being send to their own individual. And inside ChatInput & ChatMessages component- they are receiving their props as i wrote there inside their parameter. Thus, props naming convention must be exact same. */}
+                    <ChatInput 
+                        chatMessages={chatMessages}
+                        setChatMessages={setChatMessages}
+                    />
+                    <ChatMessages 
+                        chatMessages={chatMessages}
+                    />
                 </>
             );
         }
