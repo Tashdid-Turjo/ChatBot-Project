@@ -9,6 +9,9 @@
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
+    <!-- For getting a response from the chatbot. Inside this external library, we type a text in textbox & then it will show the output. For ex- we write- hello. chatbot will write- hello, how can i help you? -->
+    <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
     
     <script type="text/babel">
@@ -33,6 +36,11 @@
                     }
                 ]);
 
+                // Using that external library named- chatbot, we get our desired message from chatbot based on what we type in the typebox:
+                // Here, -> getResponse, Chatbot is from that external library's code.
+                const response = Chatbot.getResponse(inputText);
+                console.log(response);
+
                 // After typing anything inside textbox & clicking Send button, that message will be shown after the text- 
                 // "Today is 14 January.", but in the textbox, empty message- '' will be shown in the textbox.
                 // Though, this code alone won't solve that issue. For that, inside <input> tag, need to add value={inputText}.
@@ -45,7 +53,7 @@
                         placeholder="Send a message to Chatbot"
                         size="25"
                         onChange={saveInputText}            // Putting the function inside this input tag.
-                        value={inputText}                   // Will remove the text in textbox after clicking Send button. // It's called- Controlled Input.
+                        value={inputText}                   // Will remove the text in textbox after clicking Send button. // It's called- Controlled Input. That's how we control the text inside textbox.
                     />
                     <button
                         onClick={sendMessage}
