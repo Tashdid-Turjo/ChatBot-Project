@@ -11,64 +11,42 @@
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
-
-
-
-
-
-
-
-    
-    <!-- 
     <script type="text/babel">
-      function ProductDetails({ name, price, discountPrice, imageSrc }) {
+      function Counter({ count, setCount }){
+
+        return(
+          <>
+            <button 
+              onClick={() => {
+                setCount(count + 1);
+              }}
+            >
+              {(count === 1 || count === 0) ? `Clicked ${count} time` : `Clicked ${count} times`}
+              </button>
+          </>
+        )
+      };
+      
+      function App() {
+        const [count, setCount] = React.useState(0);
+        
         return (
           <>
-            <p>{name}</p>
-            <div>
-                <img src={imageSrc} width="100" />
-            </div>
-            {!discountPrice && (
-              <p>Price: ${price}</p>
-            )}
-            {discountPrice && (
-                <>
-                    <p><del>Price: ${price}</del></p>
-                    <p>Discount price: ${discountPrice}</p>
-                </>
-            )}      
-            <button>Add to Cart</button>
+            <Counter 
+              count={count}
+              setCount={setCount}
+            />
+            <Counter 
+              count={count}
+              setCount={setCount}
+            />
           </>
-        );
-      }
-
-      function App() {
-        return (
-            <>
-                <ProductDetails 
-                    name="sock"
-                    price="10"
-                    discountPrice="5"
-                    imageSrc="cotton-socks.png"
-                />
-                <ProductDetails
-                    name="tennis"
-                    price="6"
-                    imageSrc="tennis-balls.png"
-                />
-                <ProductDetails
-                    name="tshirt"
-                    price="7"
-                    imageSrc="plain-t-shirt.png"
-                />
-            </>
-        );
+        )
       }
 
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
-    </script>
-     -->
-
+  
+  </script>
   </body>
 </html>
