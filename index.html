@@ -32,6 +32,11 @@
                     id: crypto.randomUUID()
                     }
                 ]);
+
+                // After typing anything inside textbox & clicking Send button, that message will be shown after the text- 
+                // "Today is 14 January.", but in the textbox, empty message- '' will be shown in the textbox.
+                // Though, this code alone won't solve that issue. For that, inside <input> tag, need to add value={inputText}.
+                setInputText('');
             }
 
             return (
@@ -40,6 +45,7 @@
                         placeholder="Send a message to Chatbot"
                         size="25"
                         onChange={saveInputText}            // Putting the function inside this input tag.
+                        value={inputText}                   // Will remove the text in textbox after clicking Send button. // It's called- Controlled Input.
                     />
                     <button
                         onClick={sendMessage}
