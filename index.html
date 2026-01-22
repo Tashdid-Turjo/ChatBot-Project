@@ -39,7 +39,15 @@
                 // Using that external library named- chatbot, we get our desired message from chatbot based on what we type in the typebox:
                 // Here, -> getResponse, Chatbot is from that external library's code.
                 const response = Chatbot.getResponse(inputText);
-                console.log(response);
+
+                setChatMessages([
+                    ...chatMessages,                        // Will copy that array into this new array.
+                    {                                       // Added a new value with some key-value pairs into this new array.
+                    message: response,                      // message will be get from response of chatbot external library's code.
+                    sender: 'robot',
+                    id: crypto.randomUUID()
+                    }
+                ]);
 
                 // After typing anything inside textbox & clicking Send button, that message will be shown after the text- 
                 // "Today is 14 January.", but in the textbox, empty message- '' will be shown in the textbox.
