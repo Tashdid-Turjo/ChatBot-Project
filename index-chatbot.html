@@ -56,10 +56,13 @@
                 setInputText('');
             }
 
-            // For Enter keyboard shortcut button:
+            // For Enter & Escape {for Escape, it will ommit the text in input box's text} keyboard shortcut button:
             function handleKeyDown(event) {
                 if(event.key === 'Enter') {
                     sendMessage();
+                }
+                if(event.key === 'Escape') {
+                    setInputText("");           // Will clear the input box
                 }
             }
 
