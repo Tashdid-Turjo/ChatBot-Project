@@ -12,34 +12,42 @@
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
 
     <script type="text/babel">
-      function Counter({ count, setCount }){
+      function App() {
+        const [text, setText] = React.useState("");   // This state for inputbox's value.
+        // const [name, setName] = React.useState("");   // This state for displayed name after " Hello " text.
+
+        function saveInputText(e) { 
+          setText(e.target.value);
+        }
+
+        function resetText(e) {
+          setText('');
+        }
+
+        function exampleText(e) {
+          setText('Turjo');
+        }
 
         return(
           <>
-            <button 
-              onClick={() => {
-                setCount(count + 1);
-              }}
+            <input
+              value={text}
+              onChange={saveInputText}                        // You can also write the saveInputText function's works inside onChange here that I did in the Ex3.
+              placeholder="Type a name here"
+            />
+            <button
+              onClick={resetText}
             >
-              {(count === 1 || count === 0) ? `Clicked ${count} time` : `Clicked ${count} times`}
-              </button>
-          </>
-        )
-      };
-      
-      function App() {
-        const [count, setCount] = React.useState(0);
-        
-        return (
-          <>
-            <Counter 
-              count={count}
-              setCount={setCount}
-            />
-            <Counter 
-              count={count}
-              setCount={setCount}
-            />
+              Reset
+            </button>
+            <button
+              onClick={exampleText}
+            >
+              Example
+            </button>
+            <p>
+              Hello {text}
+            </p>
           </>
         )
       }
