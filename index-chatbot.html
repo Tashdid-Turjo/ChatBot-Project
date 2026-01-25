@@ -56,6 +56,13 @@
                 setInputText('');
             }
 
+            // For Enter keyboard shortcut button:
+            function handleKeyDown(event) {
+                if(event.key === 'Enter') {
+                    sendMessage();
+                }
+            }
+
             return (
                 <>
                     <input
@@ -63,6 +70,7 @@
                         size="25"
                         onChange={saveInputText}            // Putting the function inside this input tag.
                         value={inputText}                   // Will remove the text in textbox after clicking Send button. // It's called- Controlled Input. That's how we control the text inside textbox.
+                        onKeyDown={handleKeyDown}           // For Enter keyboard shortcut button.
                     />
                     <button
                         onClick={sendMessage}
