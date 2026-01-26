@@ -58,13 +58,14 @@
                 
                 setChatMessages([
                     // This makes a copy of newChatMessages, but without the last message in the array.
+                    // For now, newChatMessages currently ends with the robot message "Loading...". Thus, added this code after immediately changing the 'Loading...' message into robot's desired message.
                     ...newChatMessages.slice(0, newChatMessages.length - 1),
                     {
                         message: response,
                         sender: 'robot',
                         id: crypto.randomUUID()
                     }
-                ]);
+                ]); 
 
                 // After typing anything inside textbox & clicking Send button, that message will be shown after the text- "Today is 14 January.", but in the textbox, empty message- '' will be shown in the textbox. Though, this code alone won't solve that issue. For that, inside <input> tag, need to add value={inputText}.
                 // setInputText('');
