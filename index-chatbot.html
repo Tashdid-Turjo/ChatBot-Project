@@ -25,7 +25,8 @@
                 // console.log(inputText);
             }
 
-            function sendMessage() {
+            // Instead of using .getResponse(), now using .getResponseAsync(). Thus, used async before function.
+            async function sendMessage() {
                 // Stored chatMessages & the values/datas in a new variable.
                 const newChatMessages = [
                     ...chatMessages,                        // Will copy that array into this new array.
@@ -40,17 +41,51 @@
                 setChatMessages(newChatMessages);
 
 
+                /////////// When using .getResponseAsync(). Robot won't reply immediately. ///////////
+                // Robot won't reply immediately now. Cz instead of using .getResponse(), now using .getResponseAsync(). Thus, await & .getResponseAsync() should be written.
+                const response = await Chatbot.getResponseAsync(inputText);
+                
+                // Using prev guarantees you append to the most current state. Though omitting prev as parameter & using that old " ...newChatMessages " still works in this case, don't know why.
+                // prev is the previous state value (the old chatMessages array).
+                setChatMessages((prev) => [
+                    ...prev,
+                    {
+                        message: response,
+                        sender: 'robot',
+                        id: crypto.randomUUID()
+                    }
+                ]);
+                
+                
+                /*
+                /////////// When using .then(). Robot won't reply immediately. ///////////
+                // Using .then instead of .getResponseAsync():
+                Chatbot.getResponseAsync(inputText).then((response) => {
+                    // prev is the previous state value (the old chatMessages array).
+                    setChatMessages((prev) => [
+                        ...prev,
+                        {
+                            message: response,
+                            sender: 'robot',
+                            id: crypto.randomUUID()
+                        }
+                    ]);
+                })
+                */
+
+                /* //////////// When using .getResponse(). Robot will reply immediately. ////////////  
                 // Using that external library named- chatbot, we get our desired message from chatbot based on what we type in the typebox. Here, -> getResponse, Chatbot is from that external library's code.
                 const response = Chatbot.getResponse(inputText);
 
                 setChatMessages([
                     ...newChatMessages,                     // Instead of making a copy of chat messages, we're going to make a copy of newChatMessages which contains our new message that we just added which are- external's library's response from chatbot exteral library. So now it will have our message as well as we're going to add the chatbot response.
                     {
-                    message: response,                      // message will be get from response of chatbot external library's code.
-                    sender: 'robot',
-                    id: crypto.randomUUID()
+                        message: response,                      // message will be get from response of chatbot external library's code.
+                        sender: 'robot',
+                        id: crypto.randomUUID()
                     }
                 ]);
+                */
 
                 // After typing anything inside textbox & clicking Send button, that message will be shown after the text- "Today is 14 January.", but in the textbox, empty message- '' will be shown in the textbox. Though, this code alone won't solve that issue. For that, inside <input> tag, need to add value={inputText}.
                 setInputText('');
