@@ -18,6 +18,9 @@
         // By adding these two props inside ChatInput component, this component has now access of the chatMessages & setChatMessages inside sendMessage function. It's receiving App component's inside ChatInput's 2 props.
         function ChatInput({ chatMessages, setChatMessages }) {
             const [inputText, setInputText] = React.useState('');
+
+            // To disable the send button, when chatbot is showing Loading... text so that, user can't write another thing while chatbot is loading to show his desired message.
+            const [isLoading, setIsLoading] = React.useState(false);
             
             function saveInputText(event) {
                 // .value -> get the text inside the " input placeholder=............... ".
@@ -27,8 +30,16 @@
 
             // Instead of using .getResponse(), now using .getResponseAsync(). Thus, used async before function.
             async function sendMessage() {
+                // Disabling send button when chatbot is showing Loading... text:
+                if (isLoading || inputText === '') {
+                    return;                                 // Blocks repeated clicks.
+                };
+
+                // Set isLoading to true at the start, and set it to false after everything is done.
+                setIsLoading(true);
+
                 // In the input box, when user type any word, then after clicking the send button / press enter from keyboard, that text still stays there for a while, but it should be gone immediately right after clicking send button / press enter from keyboard.
-                // const textToSend = inputText;               // Keeps a copy
+                // const textToSend = inputText;            // Keeps a copy
                 setInputText("");                           // Clear the text immediately
 
 
@@ -40,17 +51,17 @@
                         sender: 'user',
                         id: crypto.randomUUID()
                     },
+                ];
 
+                // Put newChatMessages variable in this setChatMessages props.
+                setChatMessages([
+                    ...newChatMessages,
                     {
                         message: 'Loading...',
                         sender: 'robot',
                         id: crypto.randomUUID()
                     }
-                ];
-
-                // Put newChatMessages variable in this setChatMessages props.
-                setChatMessages(newChatMessages);
-
+                ]);
                 
                 /////////// When using .getResponseAsync(). Robot won't reply immediately. ///////////
                 // Robot won't reply immediately now. Cz instead of using .getResponse(), now using .getResponseAsync(). Thus, await & .getResponseAsync() should be written.
@@ -59,16 +70,15 @@
                 setChatMessages([
                     // This makes a copy of newChatMessages, but without the last message in the array.
                     // For now, newChatMessages currently ends with the robot message "Loading...". Thus, added this code after immediately changing the 'Loading...' message into robot's desired message.
-                    ...newChatMessages.slice(0, newChatMessages.length - 1),
+                    ...newChatMessages,
                     {
                         message: response,
                         sender: 'robot',
                         id: crypto.randomUUID()
                     }
-                ]); 
+                ]);
 
-                // After typing anything inside textbox & clicking Send button, that message will be shown after the text- "Today is 14 January.", but in the textbox, empty message- '' will be shown in the textbox. Though, this code alone won't solve that issue. For that, inside <input> tag, need to add value={inputText}.
-                // setInputText('');
+                setIsLoading(false);        // Makes button return to normal again.
             }
 
             // For Enter & Escape {for Escape, it will ommit the text in input box's text} keyboard shortcut button:
@@ -92,7 +102,10 @@
                     />
                     <button
                         onClick={sendMessage}
-                    >Send</button>
+                        disabled={isLoading}                // Disabling send button when chatbot is showing Loading... text.
+                    >
+                        {isLoading ? "Loading..." : "Send"}
+                    </button>
                 </>
             )
         }
