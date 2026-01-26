@@ -21,30 +21,49 @@
                 setInputText(event.target.value);
             }
 
-            function sendMessage() {
+            async function sendMessage() {
+                setInputText("");
+
+
                 const newChatMessages = [
                     ...chatMessages,
                     {
-                    message: inputText,
-                    sender: 'user',
-                    id: crypto.randomUUID()
+                        message: inputText,
+                        sender: 'user',
+                        id: crypto.randomUUID()
+                    },
+
+                    {
+                        message: 'Loading...',
+                        sender: 'robot',
+                        id: crypto.randomUUID()
                     }
-                ]
+                ];
 
                 setChatMessages(newChatMessages);
 
-                const response = Chatbot.getResponse(inputText);
 
+                const response = await Chatbot.getResponseAsync(inputText);
+                
                 setChatMessages([
-                    ...newChatMessages,
+                    ...newChatMessages.slice(0, newChatMessages.length - 1),
                     {
-                    message: response,
-                    sender: 'robot',
-                    id: crypto.randomUUID()
+                        message: response,
+                        sender: 'robot',
+                        id: crypto.randomUUID()
                     }
                 ]);
 
                 setInputText('');
+            }
+
+            function handleKeyDown(event) {
+                if(event.key === 'Enter') {
+                    sendMessage();
+                }
+                if(event.key === 'Escape') {
+                    setInputText("");
+                }
             }
 
             return (
@@ -54,6 +73,7 @@
                         size="25"
                         onChange={saveInputText}
                         value={inputText}
+                        onKeyDown={handleKeyDown}
                     />
                     <button
                         onClick={sendMessage}
