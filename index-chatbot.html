@@ -61,7 +61,7 @@
                 /////////// When using .then(). Robot won't reply immediately. ///////////
                 // Using .then instead of .getResponseAsync():
                 Chatbot.getResponseAsync(inputText).then((response) => {
-                    // prev is the previous state value (the old chatMessages array).
+                    // prev is the previous state value (the old chatMessages array).   
                     setChatMessages((prev) => [
                         ...prev,
                         {
