@@ -27,6 +27,10 @@
 
             // Instead of using .getResponse(), now using .getResponseAsync(). Thus, used async before function.
             async function sendMessage() {
+                // In the input box, when user type any word, then after clicking the send button / press enter from keyboard, that text still stays there for a while, but it should be gone immediately right after clicking send button / press enter from keyboard.
+                const textToSend = inputText;               // Keeps a copy
+                setInputText("");                           // Clear the text immediately
+
                 // Stored chatMessages & the values/datas in a new variable.
                 const newChatMessages = [
                     ...chatMessages,                        // Will copy that array into this new array.
