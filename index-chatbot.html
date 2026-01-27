@@ -71,7 +71,7 @@
             flex-grow: 1;                           /* Takes the remaining extra space. */
             margin-top: 20px;
             overflow: scroll;
-            scrollbar-width: none;                  /* Hides the scrollbar. */
+            scrollbar-width: none;                  /* Hides the scrollbar.  */
         }
 
     </style>
@@ -211,6 +211,13 @@
 
         // By adding this prop inside ChatMessages component, this component has now access of the chatMessages. It's receiving App component's inside ChatMessages's props.
         function ChatMessages({ chatMessages }) {
+            // React will run this useEffect's function -> after the component is created or updated 
+            //                                          -> & every time the component is updated.
+            React.useEffect(() => {
+                console.log('updated');
+            }, [chatMessages]);                         // This array controls when useEffect runs. 
+                                                        // If it's empty array, useEffect only run once after the component is created.
+                                                        // We can also put value such as "[chatMessages]". In that case, [chatMessages] will run this function every time chatMessages changes. This array is called- Dependency Array. It controls when useEffect runs.
             return (
                 <div
                     className="chat-messages-container">
