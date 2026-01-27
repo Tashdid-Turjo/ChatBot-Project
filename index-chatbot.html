@@ -2,8 +2,10 @@
 <html>
   <head>
     <style>
-        .body {
+        body {
             font-style: arial;
+            margin-top: 0px;            /* Be default, .body has 8px in both top & bottom. */
+            margin-bottom: 0px;         /* Be default, .body has 8px in both top & bottom. */
         }
 
         .send-button {
@@ -33,6 +35,7 @@
             max-width: 600px;           /* Inputbox will now won't be grow more than 600px. */
             margin-left: auto;
             margin-right: auto;
+            height: 100vh;              /* Now it will take full 100% of the webpage. */
         }
 
         .chat-message-user {
@@ -240,13 +243,13 @@
             return (
                 <div
                 className="app-container">
-                    {/* Here, By App Component -> these two child component's props are being send to their own individual. And inside ChatInput & ChatMessages component- they are receiving their props as i wrote there inside their parameter. Thus, props naming convention must be exact same. */}
-                    <ChatInput 
-                        chatMessages={chatMessages}
-                        setChatMessages={setChatMessages}
-                    />
                     <ChatMessages 
                         chatMessages={chatMessages}
+                    />
+                    {/* Here, By App Component -> these two child component's props are being send to their own individual. And inside ChatInput & ChatMessages component- they are receiving their props as i wrote there inside their parameter. Thus, props naming convention must be exact same. */}
+                    <ChatInput
+                        chatMessages={chatMessages}
+                        setChatMessages={setChatMessages}
                     />
                 </div>
             );
