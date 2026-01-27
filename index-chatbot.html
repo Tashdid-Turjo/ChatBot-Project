@@ -1,6 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <style>
+        .send-button {
+            background-color: rgb(25, 135, 84);
+            padding: 12px 15px;
+            border-radius: 10px;
+            color: white;
+            border: none;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        .input-box {
+            padding: 12px 15px;
+            border-radius: 10px;
+            border-width: 1px;
+            font-size: 15px;
+        }
+
+    </style>
+
     <title>Chatbot</title>
   </head>
   <body>
@@ -95,14 +116,16 @@
                 <>
                     <input
                         placeholder="Send a message to Chatbot"
-                        size="25"
+                        size="30"
                         onChange={saveInputText}            // Putting the function inside this input tag.
                         value={inputText}                   // Will remove the text in textbox after clicking Send button. // It's called- Controlled Input. That's how we control the text inside textbox.
                         onKeyDown={handleKeyDown}           // For Enter keyboard shortcut button.
+                        className="input-box"               // CSS style
                     />
                     <button
                         onClick={sendMessage}
                         disabled={isLoading}                // Disabling send button when chatbot is showing Loading... text.
+                        className="send-button"             // CSS style
                     >
                         {isLoading ? "Loading..." : "Send"}
                     </button>
