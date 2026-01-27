@@ -31,6 +31,11 @@
             margin-right: auto;
         }
 
+        .chat-message-user {
+            display: flex;
+            justify-content: end;
+        }        
+
     </style>
 
     <title>Chatbot</title>
@@ -147,7 +152,12 @@
         
         function ChatMessage({ message, sender }) {
             return (
-                <div>
+                <div
+                className={
+                    sender === 'user' 
+                    ? 'chat-message-user' 
+                    : 'chat-message-robot'
+                }>
                     {sender === 'robot' && (
                         <img src="robot.png" width="50" />
                     )}
