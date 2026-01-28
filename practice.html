@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Re</title>
+    <title>React Basics</title>
+    <style>
+      .on-button,
+      .off-button {
+        background-color: rgb(25, 135, 84);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
     <div class="js-container"></div>
@@ -10,51 +21,38 @@
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-
     <script type="text/babel">
       function App() {
-        const [text, setText] = React.useState("");   // This state for inputbox's value.
-        // const [name, setName] = React.useState("");   // This state for displayed name after " Hello " text.
+        const [isButtonOn, setIsOn] = React.useState(true);
 
-        function saveInputText(e) { 
-          setText(e.target.value);
+        const getButtonClass = function getButtonClass () {
+          return isButtonOn === true
+          ? "on-button"
+          : "off-button"
         }
 
-        function resetText(e) {
-          setText('');
+        const toggleButton = function toggleButton () {
+          setIsOn(!isButtonOn)
         }
 
-        function exampleText(e) {
-          setText('Turjo');
+        const onOff = function onOff () {
+          return isButtonOn 
+          ? "ON" 
+          : "OFF"
         }
-
-        return(
-          <>
-            <input
-              value={text}
-              onChange={saveInputText}                        // You can also write the saveInputText function's works inside onChange here that I did in the Ex3.
-              placeholder="Type a name here"
-            />
-            <button
-              onClick={resetText}
-            >
-              Reset
-            </button>
-            <button
-              onClick={exampleText}
-            >
-              Example
-            </button>
-            <p>
-              Hello {text}
-            </p>
-          </>
-        )
+        
+        return (
+          <button 
+            className={getButtonClass()}
+            onClick={toggleButton}
+          >
+            {onOff()}
+          </button>
+        );
       }
 
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
-  
-  </script>
+    </script>
   </body>
 </html>
