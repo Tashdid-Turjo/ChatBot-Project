@@ -211,16 +211,27 @@
 
         // By adding this prop inside ChatMessages component, this component has now access of the chatMessages. It's receiving App component's inside ChatMessages's props.
         function ChatMessages({ chatMessages }) {
+            // This .useRef() will take the React JSX
+            const chatMessagesRef = React.useRef(null);
+
             // React will run this useEffect's function -> after the component is created or updated 
             //                                          -> & every time the component is updated.
             React.useEffect(() => {
-                console.log('updated');
-            }, [chatMessages]);                         // This array controls when useEffect runs. 
+                console.log(chatMessagesRef.current);   // Put chatMessagesRef inside .useEffect(), bcz, .useEffect runs after the component is created.
+                                                        // To get the Lower part of code's <div>...</div> element, if JS DOM was used, then we had to manually do this code-
+                                                        /*
+                                                        document.querySelector(
+                                                            '.chat-messages-container'
+                                                        );
+                                                        */
+                                                        // But in React, we won't do DOM manually. Rather use- React features to get this element- {useRef()}.
+            }, [chatMessages]);                         // This array controls when useEffect runs.
                                                         // If it's empty array, useEffect only run once after the component is created.
                                                         // We can also put value such as "[chatMessages]". In that case, [chatMessages] will run this function every time chatMessages changes. This array is called- Dependency Array. It controls when useEffect runs.
             return (
                 <div
-                    className="chat-messages-container">
+                    className="chat-messages-container"
+                    ref={chatMessagesRef}>                      {/* This chatMessagesRef variable is the container that will hold the .useRef's part. */}
                     {chatMessages.map((chatMessage) => {
                         return (
                             <ChatMessage
