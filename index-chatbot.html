@@ -217,14 +217,11 @@
             // React will run this useEffect's function -> after the component is created or updated 
             //                                          -> & every time the component is updated.
             React.useEffect(() => {
-                console.log(chatMessagesRef.current);   // Put chatMessagesRef inside .useEffect(), bcz, .useEffect runs after the component is created.
-                                                        // To get the Lower part of code's <div>...</div> element, if JS DOM was used, then we had to manually do this code-
-                                                        /*
-                                                        document.querySelector(
-                                                            '.chat-messages-container'
-                                                        );
-                                                        */
-                                                        // But in React, we won't do DOM manually. Rather use- React features to get this element- {useRef()}.
+                const containerElem = chatMessagesRef.current;  // In a variable, when it has Elem, then it indicates that this variable contains an HTML element.
+
+                if(containerElem) {
+                    containerElem.scrollTop = containerElem.scrollHeight;   // Here, as we set the scroll top to the total height, it's gonna scroll all the way down to the bottom.
+                }
             }, [chatMessages]);                         // This array controls when useEffect runs.
                                                         // If it's empty array, useEffect only run once after the component is created.
                                                         // We can also put value such as "[chatMessages]". In that case, [chatMessages] will run this function every time chatMessages changes. This array is called- Dependency Array. It controls when useEffect runs.
