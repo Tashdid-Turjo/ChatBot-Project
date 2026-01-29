@@ -1,18 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>React Basics</title>
+    <!--
     <style>
-      .on-button,
-      .off-button {
-        background-color: rgb(25, 135, 84);
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .text {
+        font-weight: bold;
+      }
+
+      .login-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .email, .password {
+        margin-bottom: 10px;
+        padding: 5px 16px;
+      }
+
+      .button {
+        display: flex;
+        gap: 10px;
+      }
+
+      .login-button,
+      .signup-button {
+        background-color: rgb(0, 123, 255);
         color: white;
-        border: none;
-        padding: 10px 15px;
+        border-radius: 10px;
+        padding: 10px 16px;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .password-button {
+        display: flex;
+        gap: 10px;
+      }
+
+      .show-button,
+      .hide-button {
+        border: 0;
+        background-color: skyblue;
         border-radius: 5px;
+        margin-bottom: 7px;
         cursor: pointer;
       }
     </style>
+    -->
+    <title>React Basics</title>
   </head>
   <body>
     <div class="js-container"></div>
@@ -21,38 +60,53 @@
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    
     <script type="text/babel">
-      function App() {
-        const [isButtonOn, setIsOn] = React.useState(true);
-
-        const getButtonClass = function getButtonClass () {
-          return isButtonOn === true
-          ? "on-button"
-          : "off-button"
-        }
-
-        const toggleButton = function toggleButton () {
-          setIsOn(!isButtonOn)
-        }
-
-        const onOff = function onOff () {
-          return isButtonOn 
-          ? "ON" 
-          : "OFF"
-        }
-        
+      function LiveClock() {
+        const [timer, setTimer] = React.useState(() => 
+          dayjs().format('HH:mm:ss')
+        )
+      
         return (
-          <button 
-            className={getButtonClass()}
-            onClick={toggleButton}
-          >
-            {onOff()}
-          </button>
-        );
+          <p>{timer}</p>
+        )
+
+        React.useEffect(() => {
+          const id = setInterval(() => {
+            setTimer(dayjs().format("HH:mm:ss"));
+          }, 1000);
+
+          return () => clearInterval(id);
+        }, []);
       }
 
-      const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(<App />);
+      function App() {
+          return (
+            <>
+              <LiveClock />
+            </>
+          );
+      }
+
+    const container = document.querySelector('.js-container');
+    ReactDOM.createRoot(container).render(<App />);
+
+    /*
+
+        const paragraph = <p>CurrentYOO {dayjs().format('HH:mm:ss')}</p>;
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(paragraph);
+
+        setInterval(() => {
+          const paragraph = <p>CCCC {dayjs().format('HH:mm:ss')}</p>;
+          root.render(paragraph);
+        }, 1000);
+
+    */
     </script>
   </body>
 </html>

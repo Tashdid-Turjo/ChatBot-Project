@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+
+      .text {
+        font-weight: bold;
+      }
+
+      .login-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .email, .password {
+        margin-bottom: 10px;
+        padding: 5px 16px;
+      }
+
+      .button {
+        display: flex;
+        gap: 10px;
+      }
+
+      .login-button,
+      .signup-button {
+        background-color: rgb(0, 123, 255);
+        color: white;
+        border-radius: 10px;
+        padding: 10px 16px;
+        border: 0;
+        cursor: pointer;
+      }
+
+      .password-button {
+        display: flex;
+        gap: 10px;
+      }
+
+      .show-button,
+      .hide-button {
+        border: 0;
+        background-color: skyblue;
+        border-radius: 5px;
+        margin-bottom: 7px;
+        cursor: pointer;
+      }
+    </style>
+    -->
+    <title>React Basics</title>
+  </head>
+  <body>
+    <div class="js-container"></div>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+    
+    <script type="text/babel">
+      function LiveClock() {
+        // const [showPassword, setShowPassword] = React.useState(true);           // For Hide/Show button.
+
+        const paragraph = <p>CurrentYOO {dayjs().format('HH:mm:ss')}</p>;
+
+        const container = document.querySelector('.js-container');
+        const root = ReactDOM.createRoot(container);
+        root.render(paragraph);
+
+        setInterval(() => {
+          const paragraph = <p>CCCC {dayjs.format('HH:mm:ss')}</p>;
+          root.render(paragraph);
+        }, 1000);
+
+        }
+
+        /*
+
+        const getButtonClass = function getButtonClass () {                     // For Hide/Show button's className.
+          return showPassword === true
+          ? "show-button"                                                       // className is declared here.
+          : "hide-button"
+        }
+
+        const toggleButton = function toggleButton () {                         // For Hide/Show button's toggle by using onClick.
+          setShowPassword(!showPassword)
+        }
+
+        const hideShow = function hideShow () {                                 // For Hide/Show button's text showing.
+          return showPassword === true
+          ? "Hide"                                                              // className is declared here.
+          : "Show"
+        }
+
+        const inputType = function inputType () {                               // For input type="text"/"password"
+          return {
+            type: showPassword                                                  // In jsx, where we write- <input type="text" or type="password", but instead of that, We used this '{}' is an object & used spread in jsx.
+                  ? "text"                                                      // <input type="text"/"password".
+                  : "password"
+          }
+        }
+
+        return (
+          <div className="login-container">
+            <div>
+              <input 
+                className="email" 
+                placeholder="Email" 
+              />
+            </div>
+            <div className="password-button">
+              <input 
+                className="password" 
+                placeholder="Password" 
+                {...inputType()}                                                // Uses spread as I returned an object {which is inside inputType function}.
+              />
+              <button 
+                className={getButtonClass()}
+                onClick={toggleButton}
+              >
+                {hideShow()}
+              </button>
+            </div>
+            <div className="button">
+              <button className="btn login-button">Login</button>
+              <button className="btn signup-button">Sign up</button>
+            </div>
+          </div>
+        );
+        */
+      
+
+      /*
+      function App() {
+        return (
+          <div className="app-container">
+            <p className="text">Hello, welcome to my website</p>
+            <LiveClock />
+          </div>
+        );
+      }
+
+      ReactDOM.createRoot(container).render(<LiveClock />);
+      */
+    </script>
+  </body>
+</html>
