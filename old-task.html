@@ -64,90 +64,28 @@
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     
     <script type="text/babel">
-      function LiveClock() {
-        // const [showPassword, setShowPassword] = React.useState(true);           // For Hide/Show button.
-
-        const paragraph = <p>CurrentYOO {dayjs().format('HH:mm:ss')}</p>;
-
-        const container = document.querySelector('.js-container');
-        const root = ReactDOM.createRoot(container);
-        root.render(paragraph);
-
-        setInterval(() => {
-          const paragraph = <p>CCCC {dayjs.format('HH:mm:ss')}</p>;
-          root.render(paragraph);
-        }, 1000);
-
-        }
-
-        /*
-
-        const getButtonClass = function getButtonClass () {                     // For Hide/Show button's className.
-          return showPassword === true
-          ? "show-button"                                                       // className is declared here.
-          : "hide-button"
-        }
-
-        const toggleButton = function toggleButton () {                         // For Hide/Show button's toggle by using onClick.
-          setShowPassword(!showPassword)
-        }
-
-        const hideShow = function hideShow () {                                 // For Hide/Show button's text showing.
-          return showPassword === true
-          ? "Hide"                                                              // className is declared here.
-          : "Show"
-        }
-
-        const inputType = function inputType () {                               // For input type="text"/"password"
-          return {
-            type: showPassword                                                  // In jsx, where we write- <input type="text" or type="password", but instead of that, We used this '{}' is an object & used spread in jsx.
-                  ? "text"                                                      // <input type="text"/"password".
-                  : "password"
-          }
-        }
-
-        return (
-          <div className="login-container">
-            <div>
-              <input 
-                className="email" 
-                placeholder="Email" 
-              />
-            </div>
-            <div className="password-button">
-              <input 
-                className="password" 
-                placeholder="Password" 
-                {...inputType()}                                                // Uses spread as I returned an object {which is inside inputType function}.
-              />
-              <button 
-                className={getButtonClass()}
-                onClick={toggleButton}
-              >
-                {hideShow()}
-              </button>
-            </div>
-            <div className="button">
-              <button className="btn login-button">Login</button>
-              <button className="btn signup-button">Sign up</button>
-            </div>
-          </div>
-        );
-        */
-      
-
-      /*
       function App() {
+        const [resourceType, setResourceType] = React.useState('posts')   // As i wrote 'posts', thus in the console part, clicking posts button, it won't show render. But when it's empty like this- '', in that case, clicking any of the 3 button will show render.
+
+        React.useEffect(() => {
+          console.log('render');                                          // Here, clicking a specific button more than one in a row, it won't increase render. But when a specific button is clicked, then clicking another button, the render will increase in console. That's the main use of useEffect().
+        })
+
         return (
-          <div className="app-container">
-            <p className="text">Hello, welcome to my website</p>
-            <LiveClock />
-          </div>
-        );
+          <>
+            <div>
+              <button onClick={() => setResourceType('posts')}>Posts</button>
+              <button onClick={() => setResourceType('users')}>Users</button>
+              <button onClick={() => setResourceType('comments')}>Comments</button>
+            </div>
+            <h1>{resourceType}</h1>
+          </>
+        )
       }
 
-      ReactDOM.createRoot(container).render(<LiveClock />);
-      */
+      
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
     </script>
   </body>
 </html>
