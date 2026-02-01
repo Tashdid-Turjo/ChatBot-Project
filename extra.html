@@ -31,15 +31,15 @@
         const [isAutoClickOn, setIsAutoClickOn] = React.useState(false);
 
         React.useEffect(() => {
-          if (!isAutoClickOn) return;
-          
-          const id = setInterval(() => {
-            setCount((prevCount) => prevCount + 1);
-          }, 1000);
+            if (!isAutoClickOn) return;
 
-          return () => {
-            clearInterval(id);
-          };
+            const id = setInterval(() => {
+                setCount((prevCount) => prevCount + 1);
+            }, 1000);
+
+            return () => {
+                clearInterval(id);
+            };
         }, [isAutoClickOn])
 
         return (
@@ -60,14 +60,16 @@
               Reset
             </button>
             <button
-              onClick={() => setIsAutoClickOn(true)}
+                onClick={() => {
+                    setIsAutoClickOn(true)
+                }}
             >
               Auto Click
             </button>
             <button
-              onClick={() => setIsAutoClickOn(false)}
+                onClick={() => setIsAutoClickOn(false)}
             >
-              Stop
+                Stop
             </button>
           </>
         ) 
