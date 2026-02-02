@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <style>
-    .on-button,
-    .off-button {
-      background-color: rgb(25, 135, 84);
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-  </style>
   <title>React Basics</title>
   </head>
   <body>
@@ -25,29 +14,29 @@
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     
     <script type="text/babel">
-      function App() {
-        const [count, setCount] = React.useState(0);
-        const btnRef = React.useRef(null);
+        function App() {
+            const [name, setName] = React.useState('');
+            const inputRef = React.useRef();
 
-        return (
-            <>
-            <button
-                ref={btnRef}
-                onClick={() => setCount((prev) => prev + 1)}
-            >
-                Clicked {count} times
-            </button>
+            function focus() {
+                inputRef.current.focus()
+                inputRef.current.value = 'Some value'       // By clicking the Focus button, it will write this text in the input box.
+            }
 
-            <button
-                onClick={() => {
-                    btnRef.current.click();
-                    btnRef.current.click();
-                }}
-            >
-                Add +2 using ref
-            </button>
-            </>
-        );
+            return (
+                <>
+                    <input
+                        ref={inputRef} 
+                        value={name} 
+                        onChange={e => setName(e.target.value)} />
+                    <div>My name is {name}</div>
+                    <button
+                        onClick={focus}
+                    >
+                        Focus
+                    </button>
+                </>
+            );
         }
 
       const container = document.querySelector('.js-container');
