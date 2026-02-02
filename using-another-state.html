@@ -30,24 +30,21 @@
 
         const [isAutoClickOn, setIsAutoClickOn] = React.useState(false);
 
-        const counterBtnRef = React.useRef(null);   // Used useRef
-
         React.useEffect(() => {
           if (!isAutoClickOn) return;
           
           const id = setInterval(() => {
-            counterBtnRef.current.click();    // auto-press the counter button
+            setCount((prevCount) => prevCount + 1);
           }, 1000);
 
           return () => {
             clearInterval(id);
           };
-        }, [isAutoClickOn]);
+        }, [isAutoClickOn])
 
         return (
           <>
             <button
-              ref={counterBtnRef}
               onClick={() => {
                 setCount((prevCount) => prevCount + 1);
               }}
@@ -64,7 +61,7 @@
             </button>
             <button
               onClick={() => {
-                setIsAutoClickOn(prev => !prev);
+                setIsAutoClickOn(prev => !prev)     // Instead of another Stop button, used this single Auto Click button to work for both start & stop the Counting.
               }}
             >
               Auto Click
@@ -82,6 +79,6 @@
 
       const container = document.querySelector('.js-container');
       ReactDOM.createRoot(container).render(<App />);
-    </script> 
+    </script>
   </body>
 </html>
