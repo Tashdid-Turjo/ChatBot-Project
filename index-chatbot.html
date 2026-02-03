@@ -253,22 +253,6 @@
                                 key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
                             />
                         );
-                        /*
-                        return (
-                            <div
-                                className={isWelcome ? "welcome-message" : "message"}
-                                key={chatMessage.id}
-                            >
-                                {chatMessage.message}
-                                <ChatMessage
-                                    message={chatMessage.message}   // Here, these " message, sender, key " are attributes. " message, sender " name must be same like chatMessages function's props.
-                                    sender={chatMessage.sender}
-                                    key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
-                                />
-
-                            </div>
-                        );
-                        */
                     })}
                 </div>
             );
