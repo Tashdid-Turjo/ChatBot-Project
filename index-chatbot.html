@@ -126,7 +126,7 @@
                         id: crypto.randomUUID()
                     };
 
-                // Removing the Welcome message once the user sends the first real message.
+                // Removing the Welcome message onee the user sends the first real message.
                 const isOnlyWelcomeMessage = chatMessages.length === 1 && chatMessages[0].sender !== 'user';
                 const newChatMessages = isOnlyWelcomeMessage
                     ? [userMessage]
@@ -232,7 +232,7 @@
             return (
                 <div
                     className="chat-messages-container"
-                    ref={chatMessagesRef}                       {/* This chatMessagesRef variable is the container that will hold the .useRef's part. */}
+                    ref={chatMessagesRef}                                   // This chatMessagesRef variable is the container that will hold the .useRef's part.
                 >
                     {chatMessages.map((chatMessage) => {
                         return (
@@ -249,8 +249,9 @@
 
         function App() {
             // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage. Using React.useState(), if we update its inside data, it will also update the HTML. React.useState() returns an array.
+            // Did Array Destructuring:
             const [chatMessages, setChatMessages] = React.useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
-                message: 'Welcome to the chatbot project! Send a message using the textbox below.',     // Added be default welcome message.
+                message: 'Welcome to the chatbot project! Send a message using the textbox below.',
                 id: 'id1'
             }]);
 
