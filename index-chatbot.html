@@ -81,6 +81,11 @@
             justify-content: center;
         }
 
+        .loading-spinner {
+            height: 40px;
+            margin: -15px;
+        }
+
     </style>
 
     <title>Chatbot</title>
@@ -101,7 +106,7 @@
         function ChatInput({ chatMessages, setChatMessages }) {
             const [inputText, setInputText] = React.useState('');
 
-            // To disable the send button, when chatbot is showing Loading... text so that, user can't write another thing while chatbot is loading to show his desired message.
+            // To disable the send button, when chatbot is showing loading-spinnger gif so that, user can't write another thing while chatbot is loading to show his desired message.
             const [isLoading, setIsLoading] = React.useState(false);
             
             function saveInputText(event) {
@@ -112,7 +117,7 @@
 
             // Instead of using .getResponse(), now using .getResponseAsync(). Thus, used async before function.
             async function sendMessage() {
-                // Disabling send button when chatbot is showing Loading... text:
+                // Disabling send button when chatbot is showing loading-spinner gif text:
                 if (isLoading || inputText === '') {
                     return;                                 // Blocks repeated clicks.
                 };
@@ -143,7 +148,7 @@
                 setChatMessages([
                     ...newChatMessages,
                     {
-                        message: 'Loading...',
+                        type: 'Loading',                // Changed Loading... text to -> loading-spinner image.
                         sender: 'robot',
                         id: crypto.randomUUID()
                     }
@@ -155,7 +160,7 @@
                 
                 setChatMessages([
                     // This makes a copy of newChatMessages, but without the last message in the array.
-                    // For now, newChatMessages currently ends with the robot message "Loading...". Thus, added this code after immediately changing the 'Loading...' message into robot's desired message.
+                    // For now, newChatMessages currently ends with the robot's loading-spinner gif. Thus, added this code after immediately changing the 'loading-spinner gif' message into robot's desired message.
                     ...newChatMessages,
                     {
                         message: response,
@@ -190,7 +195,7 @@
                     />
                     <button
                         onClick={sendMessage}
-                        disabled={isLoading}                // Disabling send button when chatbot is showing Loading... text.
+                        disabled={isLoading}                // Disabling send button when chatbot is showing loading-spinner gif.
                         className="send-button"             // CSS style
                     >
                         {isLoading ? "Loading..." : "Send"}
@@ -255,9 +260,19 @@
                             </div>
                         ) : (
                             <ChatMessage
-                                message={chatMessage.message}   // Here, these " message, sender, key " are attributes. " message, sender " name must be same like chatMessages function's props.
                                 sender={chatMessage.sender}
                                 key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
+                                message={
+                                    chatMessage.type === "Loading" ? (          // Will show spinner image when this message is a loading-type message.
+                                        <img 
+                                            src='loading-spinner.gif'
+                                            className="loading-spinner"
+                                            alt="Loading"
+                                        />
+                                    ) : (
+                                        chatMessage.message
+                                    )
+                                }
                             />
                         );
                     })}
