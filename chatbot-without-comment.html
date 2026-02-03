@@ -73,6 +73,19 @@
             scrollbar-width: none;
         }
 
+        .welcome-message {
+            background-color: rgb(185, 61, 61);
+            color: bisque;
+            display: flex;
+            justify-content: center;
+        }
+
+        .loading-spinner-text,
+        .Loading-spinner-button {
+            height: 40px;
+            margin: -15px;
+        }
+
     </style>
 
     <title>Chatbot</title>
@@ -94,6 +107,7 @@
             const [isLoading, setIsLoading] = React.useState(false);
             
             function saveInputText(event) {
+                
                 setInputText(event.target.value);
             }
 
@@ -121,7 +135,7 @@
                 setChatMessages([
                     ...newChatMessages,
                     {
-                        message: 'Loading...',
+                        type: 'Loading',
                         sender: 'robot',
                         id: crypto.randomUUID()
                     }
@@ -166,12 +180,21 @@
                         disabled={isLoading}
                         className="send-button"
                     >
-                        {isLoading ? "Loading..." : "Send"}
+                        {isLoading ? (
+                            <img 
+                                src="loading-spinner.gif"
+                                className="Loading-spinner-button"
+                                alt="Loading"
+                            />
+                        ) : (
+                            "Send"
+                        )
+                        }
                     </button>
                 </div>
             )
         }
-        
+
         function ChatMessage({ message, sender }) {
             return (
                 <div
@@ -204,18 +227,36 @@
                     containerElem.scrollTop = containerElem.scrollHeight;
                 }
             }, [chatMessages]);
-            
             return (
                 <div
                     className="chat-messages-container"
                     ref={chatMessagesRef}
                 >
                     {chatMessages.map((chatMessage) => {
-                        return (
+                        const isWelcome = (chatMessage.id === "id1");
+
+                        return isWelcome ? (
+                            <div 
+                                className="welcome-message"
+                                key={chatMessage.id}
+                            >
+                                {chatMessage.message}
+                            </div>
+                        ) : (
                             <ChatMessage
-                                message={chatMessage.message}
                                 sender={chatMessage.sender}
                                 key={chatMessage.id}
+                                message={
+                                    chatMessage.type === "Loading" ? (
+                                        <img 
+                                            src='loading-spinner.gif'
+                                            className="loading-spinner-text"
+                                            alt="Loading"
+                                        />
+                                    ) : (
+                                        chatMessage.message
+                                    )
+                                }
                             />
                         );
                     })}
