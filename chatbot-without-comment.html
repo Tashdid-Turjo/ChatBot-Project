@@ -107,7 +107,6 @@
             const [isLoading, setIsLoading] = React.useState(false);
             
             function saveInputText(event) {
-                
                 setInputText(event.target.value);
             }
 
@@ -217,7 +216,8 @@
             )
         }
 
-        function ChatMessages({ chatMessages }) {
+
+        function useAutoScroll(dependencies) {
             const chatMessagesRef = React.useRef(null);
 
             React.useEffect(() => {
@@ -226,7 +226,15 @@
                 if(containerElem) {
                     containerElem.scrollTop = containerElem.scrollHeight;
                 }
-            }, [chatMessages]);
+            }, dependencies);
+
+            return chatMessagesRef;
+        }
+
+    
+        function ChatMessages({ chatMessages }) {
+            const chatMessagesRef = useAutoScroll([chatMessages]);
+
             return (
                 <div
                     className="chat-messages-container"
