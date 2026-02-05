@@ -1,6 +1,4 @@
 import { useState } from 'react'                  // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
-import reactLogo from './assets/react.svg'        // Import images, as we no longer using these images, thus this line showing error. Thus this line should be deleted.
-import viteLogo from '/vite.svg'                  // Import images, as we no longer using these images, thus this line showing error. Thus this line should be deleted.
 import './App.css'
 
 
@@ -8,7 +6,7 @@ import './App.css'
 function App() {
   // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage. Using React.useState(), if we update its inside data, it will also update the HTML. React.useState() returns an array.
   // Did Array Destructuring:
-  const [chatMessages, setChatMessages] = React.useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
+  const [chatMessages, setChatMessages] = useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
     message: 'Welcome to the chatbot project! Send a message using the textbox below.',
     id: 'id1'
   }]);
