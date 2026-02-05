@@ -1,4 +1,4 @@
-import { useState } from 'react'                  // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
+import { useState, useEffect, useRef } from 'react'                  // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
 import './App.css'
 
 
@@ -138,11 +138,11 @@ function ChatMessage({ message, sender }) {
 // Created Custom hook -> 'useAutoScroll'. We Will make the auto-scroll feature a custom hook, so that we can easily add this feature to other components. Thus, cut-&-pasted useRef() & useEffect() hooks from the ChatMessages component into this custom hook function -> useAutoScroll.
 function useAutoScroll(dependencies) {
   // This .useRef() will take the React JSX
-  const chatMessagesRef = React.useRef(null);
+  const chatMessagesRef = useRef(null);
 
   // React will run this useEffect's function -> after the component is created or updated 
   //                                          -> & every time the component is updated.
-  React.useEffect(() => {
+  useEffect(() => {
     const containerElem = chatMessagesRef.current;  // In a variable, when it has Elem, then it indicates that this variable contains an HTML element.
 
     if(containerElem) {
@@ -165,39 +165,39 @@ function ChatMessages({ chatMessages }) {
   const chatMessagesRef = useAutoScroll([chatMessages]);
 
   return (
-      <div
-        className="chat-messages-container"
-        ref={chatMessagesRef}                                   // This chatMessagesRef variable is the container that will hold the .useRef's part.
-      >
-        {chatMessages.map((chatMessage) => {
-          const isWelcome = (chatMessage.id === "id1");
+    <div
+      className="chat-messages-container"
+      ref={chatMessagesRef}                                   // This chatMessagesRef variable is the container that will hold the .useRef's part.
+    >
+      {chatMessages.map((chatMessage) => {
+        const isWelcome = (chatMessage.id === "id1");
 
-          return isWelcome ? (
-            <div 
-              className="welcome-message"
-              key={chatMessage.id}
-            >
-              {chatMessage.message}
-            </div>
-          ) : (
-            <ChatMessage
-              sender={chatMessage.sender}
-              key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
-              message={
-                chatMessage.type === "Loading" ? (          // Will show spinner image when this message is a loading-type message.
-                  <img 
-                    src='loading-spinner.gif'
-                    className="loading-spinner-text"
-                    alt="Loading"
-                  />
-                ) : (
-                  chatMessage.message
-                )
-              }
-            />
-          );
-        })}
-      </div>
+        return isWelcome ? (
+          <div 
+            className="welcome-message"
+            key={chatMessage.id}
+          >
+            {chatMessage.message}
+          </div>
+        ) : (
+          <ChatMessage
+            sender={chatMessage.sender}
+            key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
+            message={
+              chatMessage.type === "Loading" ? (          // Will show spinner image when this message is a loading-type message.
+                <img 
+                  src='loading-spinner.gif'
+                  className="loading-spinner-text"
+                  alt="Loading"
+                />
+              ) : (
+                chatMessage.message
+              )
+            }
+          />
+        );
+      })}
+    </div>
   );
 }
 
