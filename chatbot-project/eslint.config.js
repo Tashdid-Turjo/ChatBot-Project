@@ -28,6 +28,9 @@ export default [
         'warn',
         { allowConstantExport: true },
       ],
+      // Added a rule check:
+      'react/prop-types': 'off'
+
     },
   },
 ]
