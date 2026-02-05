@@ -236,8 +236,9 @@
             )
         }
 
-        // By adding this prop inside ChatMessages component, this component has now access of the chatMessages. It's receiving App component's inside ChatMessages's props.
-        function ChatMessages({ chatMessages }) {
+
+        // Created Custom hook -> 'useAutoScroll'. We Will make the auto-scroll feature a custom hook, so that we can easily add this feature to other components. Thus, cut-&-pasted useRef() & useEffect() hooks from the ChatMessages component into this custom hook function -> useAutoScroll.
+        function useAutoScroll(dependencies) {
             // This .useRef() will take the React JSX
             const chatMessagesRef = React.useRef(null);
 
@@ -249,9 +250,22 @@
                 if(containerElem) {
                     containerElem.scrollTop = containerElem.scrollHeight;   // Here, as we set the scroll top to the total height, it's gonna scroll all the way down to the bottom.
                 }
-            }, [chatMessages]);                         // This array controls when useEffect runs.
-                                                        // If it's empty array, useEffect only run once after the component is created.
-                                                        // We can also put value such as "[chatMessages]". In that case, [chatMessages] will run this function every time chatMessages changes. This array is called- Dependency Array. It controls when useEffect runs.
+            }, dependencies);                       // This array controls when useEffect runs.
+                                                    // If it's empty array, useEffect only run once after the component is created.
+                                                    // We can also put value such as the parameter "[dependencies]". In that case, [dependencies] will run this function every time this dependencies value changes. This array is called- Dependency Array. It controls when useEffect runs.
+                                                    // wrote 'dependencies' instead of '[dependencies]', bcz, dependencies is already passed into the function as an array (like [chatMessages]), putting it inside another set of brackets would create a nested array [[chatMessages]].
+
+            // Return the value, which is -> 'ref variable'. So components can use it. Cz this ref will be used outside the hook.
+            return chatMessagesRef;
+        }
+
+        
+        // By adding this prop inside ChatMessages component, this component has now access of the chatMessages. It's receiving App component's inside ChatMessages's props.
+        function ChatMessages({ chatMessages }) {
+            // Used Custom hooks -> 'useAutoScroll' with the 'dependencies' array & used the ref that it returns.
+            // Reason behind using [chatMessages] instead of dependencies: To work without an error, the variable 'dependencies' must actually exist inside MyComponent. As it isn't defined here, the code will crash. But chatMessages exists, so passing [chatMessages] works perfectly.
+            const chatMessagesRef = useAutoScroll([chatMessages]);
+
             return (
                 <div
                     className="chat-messages-container"
