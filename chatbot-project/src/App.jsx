@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useState } from 'react'                  // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
+import reactLogo from './assets/react.svg'        // Import images, as we no longer using these images, thus this line showing error. Thus this line should be deleted.
+import viteLogo from '/vite.svg'                  // Import images, as we no longer using these images, thus this line showing error. Thus this line should be deleted.
 import './App.css'
 
 
@@ -20,7 +20,7 @@ function App() {
   return (
     <div
       className="app-container">
-        <ChatMessages 
+        <ChatMessages                               // ChatMessages & ChatInput are also showing error as we ain't using these here. Thus, these two components should also be moved in this file.
           chatMessages={chatMessages}
         />
         {/* Here, By App Component -> these two child component's props are being send to their own individual. And inside ChatInput & ChatMessages component- they are receiving their props as i wrote there inside their parameter. Thus, props naming convention must be exact same. */}
