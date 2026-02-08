@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'                   // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
 import {Chatbot} from 'supersimpledev'                                // Imported this library as Chatbot was showing error through ESLint extension.
-import './App.css'
-
+import './App.css'                                                    // ./ -> means current folder. Folder(which is 'src' folder) that contains the file.
+                                                                      // This 'import' is a feature of Vite. Vite lets us import any type of file.
 
 // By adding these two props inside ChatInput component, this component has now access of the chatMessages & setChatMessages inside sendMessage function. It's receiving App component's inside ChatInput's 2 props.
 function ChatInput({ chatMessages, setChatMessages }) {

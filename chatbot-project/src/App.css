@@ -1,42 +1,84 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body {
+    font-style: arial;
+    margin-top: 0px;            /* Be default, .body has 8px in both top & bottom. */
+    margin-bottom: 0px;         /* Be default, .body has 8px in both top & bottom. */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.send-button {
+    background-color: rgb(25, 135, 84);
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 15px;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.input-box {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 15px;
+    flex-grow: 1;               /* Kinda work like grow, shrink. Thus, it will grow for inputbox. Takes the remaining extra space. */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.chat-input-container {
+    display: flex;
+    margin-bottom: 60px;
 }
 
-.card {
-  padding: 2em;
+.app-container {
+    max-width: 600px;           /* Inputbox will now won't be grow more than 600px. */
+    margin-left: auto;
+    margin-right: auto;
+    height: 100vh;              /* Now it will take full 100% of the webpage. */
+    display: flex;
+    flex-direction: column;
 }
 
-.read-the-docs {
-  color: #888;
+.chat-message-user {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+}
+
+.chat-message-text {
+    background-color: rgb(238, 238, 238);
+    padding: 12px 10px;
+    border-radius: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    max-width: 300px;
+}
+
+.chat-message-robot {
+    display: flex;
+    align-items: start;
+}
+
+.chat-message-profile {
+    width: 45px;
+}
+
+{/* ?? Don't know why have to use ChatMessages component instead of ChatMessage component ?? */}
+.chat-messages-container {
+    flex-grow: 1;                           /* Takes the remaining extra space. */
+    margin-top: 20px;
+    overflow: scroll;
+    scrollbar-width: none;                  /* Hides the scrollbar.  */
+}
+
+.welcome-message {
+    background-color: rgb(185, 61, 61);
+    color: bisque;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-spinner-text,
+.Loading-spinner-button {
+    height: 40px;
+    margin: -15px;
 }
