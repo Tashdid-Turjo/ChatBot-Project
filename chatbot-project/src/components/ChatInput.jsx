@@ -4,6 +4,7 @@ import LoadingSpinnerGif from '../assets/loading-spinner.gif'
 
 
 // By adding these two props inside ChatInput component, this component has now access of the chatMessages & setChatMessages inside sendMessage function. It's receiving App component's inside ChatInput's 2 props.
+// export function ChatInput = it's call- 'Named Export'.
 export function ChatInput({ chatMessages, setChatMessages }) {      // export -> ESLint extension will assume that we're going to use this component outside of this file.
   const [inputText, setInputText] = useState('');
 
