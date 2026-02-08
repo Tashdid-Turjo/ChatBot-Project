@@ -232,3 +232,11 @@ function App() {
 }
 
 export default App
+
+
+
+/*
+In this file, we won't put this code as it's inside main.jsx already.
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(<App />);
+*/
