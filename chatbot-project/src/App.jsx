@@ -1,5 +1,7 @@
 import { useState, useEffect, useRef } from 'react'                   // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
 import {Chatbot} from 'supersimpledev'                                // Imported this library as Chatbot was showing error through ESLint extension.
+import RobotProfileImage from './assets/robot.png'                    // RobotProfileImage can be any name & this name shouldn't contain curly braces.
+import UserProfileImage from './assets/user.png'
 import './App.css'                                                    // ./ -> means current folder. Folder(which is 'src' folder) that contains the file.
                                                                       // This 'import' is a feature of Vite. Vite lets us import any type of file.
 
@@ -123,13 +125,13 @@ function ChatMessage({ message, sender }) {
       }
     >
       {sender === 'robot' && (
-        <img src="robot.png" className="chat-message-profile" />
+        <img src={RobotProfileImage} className="chat-message-profile" />
       )}
       <div className="chat-message-text">
         {message}
       </div>
       {sender === 'user' && (
-        <img src="user.png" className="chat-message-profile" />
+        <img src={UserProfileImage} className="chat-message-profile" />
       )}
     </div>
   )
