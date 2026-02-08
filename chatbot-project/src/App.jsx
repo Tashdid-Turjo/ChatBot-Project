@@ -1,13 +1,14 @@
-import { useState, useEffect, useRef } from 'react'                  // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
+import { useState, useEffect, useRef } from 'react'                   // Here, it means that, inside node_modules/react folder, it will use only useState feature. Thus, inside App component, ESLint extention is showing a mistake of React.useState by underlining 'React' word. Thus we will remove that word only inside App component.
+import {Chatbot} from 'supersimpledev'                                // Imported this library as Chatbot was showing error through ESLint extension.
 import './App.css'
 
 
 // By adding these two props inside ChatInput component, this component has now access of the chatMessages & setChatMessages inside sendMessage function. It's receiving App component's inside ChatInput's 2 props.
 function ChatInput({ chatMessages, setChatMessages }) {
-  const [inputText, setInputText] = React.useState('');
+  const [inputText, setInputText] = useState('');
 
   // To disable the send button, when chatbot is showing loading-spinnger gif so that, user can't write another thing while chatbot is loading to show his desired message.
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   
   function saveInputText(event) {
     // .value -> get the text inside the " input placeholder=............... ".
@@ -56,7 +57,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
     
     // When using .getResponseAsync(). Robot won't reply immediately.
     // Robot won't reply immediately now. Cz instead of using .getResponse(), now using .getResponseAsync(). Thus, await & .getResponseAsync() should be written.
-    const response = await Chatbot.getResponseAsync(inputText);
+    const response = await Chatbot.getResponseAsync(inputText);             // Imported external library- supersimpledev. So ESLint ain't showing error for 'Chatbot'.
     
     setChatMessages([
         // This makes a copy of newChatMessages, but without the last message in the array.
