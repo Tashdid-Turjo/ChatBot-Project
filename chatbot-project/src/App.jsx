@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'                   // Here, i
 import {Chatbot} from 'supersimpledev'                                // Imported this library as Chatbot was showing error through ESLint extension.
 import RobotProfileImage from './assets/robot.png'                    // RobotProfileImage can be any name & this name shouldn't contain curly braces.
 import UserProfileImage from './assets/user.png'
+import LoadingSpinnerGif from './assets/loading-spinner.gif'
 import './App.css'                                                    // ./ -> means current folder. Folder(which is 'src' folder) that contains the file.
                                                                       // This 'import' is a feature of Vite. Vite lets us import any type of file.
 
@@ -103,7 +104,7 @@ function ChatInput({ chatMessages, setChatMessages }) {
       >
         {isLoading ? (
           <img 
-            src="loading-spinner.gif"
+            src={LoadingSpinnerGif}
             className="Loading-spinner-button"
             alt="Loading"
           />
@@ -189,7 +190,7 @@ function ChatMessages({ chatMessages }) {
             message={
               chatMessage.type === "Loading" ? (          // Will show spinner image when this message is a loading-type message.
                 <img 
-                  src='loading-spinner.gif'
+                  src={LoadingSpinnerGif}
                   className="loading-spinner-text"
                   alt="Loading"
                 />
