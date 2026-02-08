@@ -1,9 +1,3 @@
-body {
-    font-style: arial;
-    margin-top: 0px;            /* Be default, .body has 8px in both top & bottom. */
-    margin-bottom: 0px;         /* Be default, .body has 8px in both top & bottom. */
-}
-
 .send-button {
     background-color: rgb(25, 135, 84);
     padding: 12px 15px;
