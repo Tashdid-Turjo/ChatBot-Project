@@ -5,7 +5,7 @@ import './ChatMessages.css'
 
 
 // Created Custom hook -> 'useAutoScroll'. We Will make the auto-scroll feature a custom hook, so that we can easily add this feature to other components. Thus, cut-&-pasted useRef() & useEffect() hooks from the ChatMessages component into this custom hook function -> useAutoScroll.
-function useAutoScroll(dependencies) {
+function useAutoScroll(dependencies) {      // ?? Here, by adding chatMessages & add [chatMessages] in the array control, the warning will be gone, but don't know if it's fine for my project.
   // This .useRef() will take the React JSX
   const chatMessagesRef = useRef(null);
 
