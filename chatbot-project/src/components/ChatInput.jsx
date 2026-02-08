@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Chatbot } from 'supersimpledev'                    // Imported this library as Chatbot was showing error through ESLint extension.
 import LoadingSpinnerGif from '../assets/loading-spinner.gif'
+import './ChatInput.css'                                        // It's a Vite feature.
 
 
 // By adding these two props inside ChatInput component, this component has now access of the chatMessages & setChatMessages inside sendMessage function. It's receiving App component's inside ChatInput's 2 props.

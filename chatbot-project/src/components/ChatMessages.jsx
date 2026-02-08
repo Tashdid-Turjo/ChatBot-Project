@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { ChatMessage } from './ChatMessage'                    // Bcz in this ChatMessages component, in the jsx code, we used ChatMessage component.
 import LoadingSpinnerGif from '../assets/loading-spinner.gif'
+import './ChatMessages.css'
 
 
 // Created Custom hook -> 'useAutoScroll'. We Will make the auto-scroll feature a custom hook, so that we can easily add this feature to other components. Thus, cut-&-pasted useRef() & useEffect() hooks from the ChatMessages component into this custom hook function -> useAutoScroll.

@@ -1,0 +1,28 @@
+.send-button {
+    background-color: rgb(25, 135, 84);
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: white;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.input-box {
+    padding: 12px 15px;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 15px;
+    flex-grow: 1;               /* Kinda work like grow, shrink. Thus, it will grow for inputbox. Takes the remaining extra space. */
+}
+
+.chat-input-container {
+    display: flex;
+    margin-bottom: 60px;
+}
+
+.Loading-spinner-button {
+    height: 40px;
+    margin: -15px;
+}

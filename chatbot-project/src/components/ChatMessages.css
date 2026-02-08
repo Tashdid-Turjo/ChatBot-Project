@@ -1,0 +1,19 @@
+{/* ?? Don't know why have to use ChatMessages component instead of ChatMessage component ?? */}
+.chat-messages-container {
+    flex-grow: 1;                           /* Takes the remaining extra space. */
+    margin-top: 20px;
+    overflow: scroll;
+    scrollbar-width: none;                  /* Hides the scrollbar.  */
+}
+
+.welcome-message {
+    background-color: rgb(185, 61, 61);
+    color: bisque;
+    display: flex;
+    justify-content: center;
+}
+
+.loading-spinner-text {
+    height: 40px;
+    margin: -15px;
+}

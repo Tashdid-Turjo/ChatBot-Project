@@ -1,27 +1,3 @@
-.send-button {
-    background-color: rgb(25, 135, 84);
-    padding: 12px 15px;
-    border-radius: 10px;
-    color: white;
-    border: none;
-    margin-left: 10px;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.input-box {
-    padding: 12px 15px;
-    border-radius: 10px;
-    border-width: 1px;
-    font-size: 15px;
-    flex-grow: 1;               /* Kinda work like grow, shrink. Thus, it will grow for inputbox. Takes the remaining extra space. */
-}
-
-.chat-input-container {
-    display: flex;
-    margin-bottom: 60px;
-}
-
 .app-container {
     max-width: 600px;           /* Inputbox will now won't be grow more than 600px. */
     margin-left: auto;
@@ -29,50 +5,4 @@
     height: 100vh;              /* Now it will take full 100% of the webpage. */
     display: flex;
     flex-direction: column;
-}
-
-.chat-message-user {
-    display: flex;
-    justify-content: end;
-    align-items: start;
-}
-
-.chat-message-text {
-    background-color: rgb(238, 238, 238);
-    padding: 12px 10px;
-    border-radius: 10px;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-bottom: 20px;
-    max-width: 300px;
-}
-
-.chat-message-robot {
-    display: flex;
-    align-items: start;
-}
-
-.chat-message-profile {
-    width: 45px;
-}
-
-{/* ?? Don't know why have to use ChatMessages component instead of ChatMessage component ?? */}
-.chat-messages-container {
-    flex-grow: 1;                           /* Takes the remaining extra space. */
-    margin-top: 20px;
-    overflow: scroll;
-    scrollbar-width: none;                  /* Hides the scrollbar.  */
-}
-
-.welcome-message {
-    background-color: rgb(185, 61, 61);
-    color: bisque;
-    display: flex;
-    justify-content: center;
-}
-
-.loading-spinner-text,
-.Loading-spinner-button {
-    height: 40px;
-    margin: -15px;
 }
