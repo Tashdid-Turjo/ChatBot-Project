@@ -16,6 +16,7 @@ function App() {
     id: 'id1'
   }]);
 
+  // By using this, we are able to add more User-robotResponse messages using this object.
   useEffect(() => {
     Chatbot.addResponses({
         'hello hi': `Hello sir/madam, how can I help you?`,
