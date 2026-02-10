@@ -5,20 +5,8 @@ import './ChatMessage.css'
 
 
 export function ChatMessage({ message, sender }) {
-  const [saveTime, setSaveTime] = useState([]);
 
-  function sendMessage(text) {
-    // Implementing timestamp for each & every message
-    const time = dayjs().valueOf();     // To get the current time
-  
-    const newMessage = {
-      id: crypto.randomUUID(),
-      text,
-      time
-    };
-
-    setSaveTime([...saveTime, setSaveTime]);
-  }
+  const time = dayjs().valueOf();
 
   return (
     <div

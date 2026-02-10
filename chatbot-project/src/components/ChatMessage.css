@@ -4,7 +4,7 @@
     align-items: start;
 }
 
-.chat-message-content {
+.chat-message-text {
     background-color: rgb(238, 238, 238);
     padding: 12px 10px;
     border-radius: 10px;
