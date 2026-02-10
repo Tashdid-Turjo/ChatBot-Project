@@ -24,3 +24,6 @@ A simple chatbot application built with React.
 - React
 - Day.js (for time formatting)
 - Vite (development server)
+
+## Acknowledgements
+This project is built based on a tutorial by [SuperSimpleDev](https://www.youtube.com/channel/UC2XJ9COFfA7dG-H59gqJ3Q) to create a chatbot application in React.
