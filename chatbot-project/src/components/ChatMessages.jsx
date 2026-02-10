@@ -52,6 +52,8 @@ function ChatMessages({ chatMessages }) {                       // Here, without
         ) : (
           <ChatMessage
             sender={chatMessage.sender}
+            type={chatMessage.type}         // Without this code, when robot message is showing loading spinner gif in the message, then time will be shown in that gif.
+            time={chatMessage.time}         // Without this code, all the previous user's & robot's message's time will be updated as current time.
             key={chatMessage.id}            // Here, key is a mandatory name in this context. key is a special React attribute used for list items. You cannot rename it to id or anything else and expect React to treat it as the list key.
             message={
               chatMessage.type === "Loading" ? (          // Will show spinner image when this message is a loading-type message.

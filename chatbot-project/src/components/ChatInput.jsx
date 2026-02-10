@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Chatbot } from 'supersimpledev'                    // Imported this library as Chatbot was showing error through ESLint extension.
+import dayjs from 'dayjs'
 import LoadingSpinnerGif from '../assets/loading-spinner.gif'
 import './ChatInput.css'                                        // It's a Vite feature.
 
@@ -9,13 +10,13 @@ import './ChatInput.css'                                        // It's a Vite f
 export function ChatInput({ chatMessages, setChatMessages }) {      // export -> ESLint extension will assume that we're going to use this component outside of this file.
   const [inputText, setInputText] = useState('');
 
-  // To disable the send button, when chatbot is showing loading-spinnger gif so that, user can't write another thing while chatbot is loading to show his desired message.
+  // To disable the send button, when chatbot is showing loading-spinnger gif so that, user can write another message while chatbot is loading to show his desired message but user won't be click the send button in that time.
   const [isLoading, setIsLoading] = useState(false);
   
   function saveInputText(event) {
     // .value -> get the text inside the " input placeholder=............... ".
-    setInputText(event.target.value);            // It will show all text for each & every moment that we type in the console.
-    // console.log(inputText);
+    setInputText(event.target.value);
+    // console.log(inputText);                    // It will show all text for each & every moment that we type in the console.
   }
 
   // Instead of using .getResponse(), now using .getResponseAsync(). Thus, used async before function.
@@ -38,10 +39,11 @@ export function ChatInput({ chatMessages, setChatMessages }) {      // export ->
                                                          // Added a new value with some key-value pairs into this new array.
       message: inputText,
       sender: 'user',
+      time: dayjs().valueOf(),
       id: crypto.randomUUID()
     };
 
-    // Removing the Welcome message onee the user sends the first real message.
+    // Removing the Welcome message once the user sends the first real message.
     const isOnlyWelcomeMessage = chatMessages.length === 1 && chatMessages[0].sender !== 'user';
     const newChatMessages = isOnlyWelcomeMessage
       ? [userMessage]
@@ -68,6 +70,7 @@ export function ChatInput({ chatMessages, setChatMessages }) {      // export ->
         {
           message: response,
           sender: 'robot',
+          time: dayjs().valueOf(),
           id: crypto.randomUUID()
         }
     ]);

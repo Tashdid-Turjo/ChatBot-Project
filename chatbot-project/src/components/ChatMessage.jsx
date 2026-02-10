@@ -4,9 +4,7 @@ import UserProfileImage from '../assets/user.png'
 import './ChatMessage.css'
 
 
-export function ChatMessage({ message, sender }) {
-
-  const time = dayjs().valueOf();
+export function ChatMessage({ message, sender, time, type }) {
 
   return (
     <div
@@ -23,9 +21,12 @@ export function ChatMessage({ message, sender }) {
         <div className="chat-message-content">
           {message}
         </div>
-        <div className="chat-message-time">
-          {dayjs(time).format('h:mma')}
-        </div>
+        
+        {type !== 'Loading' && (
+          <div className="chat-message-time">
+            {dayjs(time).format('h:mma')}
+          </div>
+        )}
       </div>
       {sender === 'user' && (
         <img src={UserProfileImage} className="chat-message-profile" />
