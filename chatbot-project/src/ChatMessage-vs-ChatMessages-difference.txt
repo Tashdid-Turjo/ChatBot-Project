@@ -1,0 +1,13 @@
+// Chatbot project, why two different ChatMessage, ChatMessages components-
+* **`ChatMessage`**: renders **one** message bubble (text, sender styling, profile icon, time). Reusable “single item” UI.
+
+* **`ChatMessages`**: renders the **list** of messages. It loops (`map`) over `chatMessages`, decides which message to show (welcome/loading/normal), and returns many `ChatMessage` components.
+
+Why separate them:
+
+* Keeps code cleaner: **list logic** in one place, **single message UI** in another.
+* Reuse: if you change message bubble design, you edit only `ChatMessage`.
+* Easier to maintain and debug.
+
+
+Know that, A **bubble** is the single chat message box (the rounded UI block that shows one message).
