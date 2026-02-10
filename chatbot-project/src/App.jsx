@@ -16,6 +16,11 @@ function App() {
     }
   ]
 
+  // For Clear button that should omit every message & show the welcome text.
+  const onClear = () => {
+    setChatMessages(DEFAULT_MESSAGES);
+  };
+
   // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage. Using React.useState(), if we update its inside data, it will also update the HTML. React.useState() returns an array.
   // Did Array Destructuring:
   const [chatMessages, setChatMessages] = useState(() => {             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
@@ -52,6 +57,7 @@ function App() {
         <ChatInput
           chatMessages={chatMessages}
           setChatMessages={setChatMessages}
+          onClear={onClear}                         // For Clear button's working mechanism.
         />
     </div>
   );

@@ -7,7 +7,7 @@ import './ChatInput.css'                                        // It's a Vite f
 
 // By adding these two props inside ChatInput component, this component has now access of the chatMessages & setChatMessages inside sendMessage function. It's receiving App component's inside ChatInput's 2 props.
 // export function ChatInput = it's call- 'Named Export'.
-export function ChatInput({ chatMessages, setChatMessages }) {      // export -> ESLint extension will assume that we're going to use this component outside of this file.
+export function ChatInput({ chatMessages, setChatMessages, onClear }) {      // export -> ESLint extension will assume that we're going to use this component outside of this file.
   const [inputText, setInputText] = useState('');
 
   // To disable the send button, when chatbot is showing loading-spinnger gif so that, user can write another message while chatbot is loading to show his desired message but user won't be click the send button in that time.
@@ -113,6 +113,11 @@ export function ChatInput({ chatMessages, setChatMessages }) {      // export ->
         ) : (
           "Send"
         )}
+      </button>
+      <button
+        onClick={onClear}
+      >
+        Clear
       </button>
     </div>
   )
