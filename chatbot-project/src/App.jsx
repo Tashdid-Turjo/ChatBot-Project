@@ -9,12 +9,19 @@ import './App.css'                                                    // ./ -> m
 
 // TODO: Changed its code to my App component's code. Here, you will see some mistakes are showing by ESLint extension.
 function App() {
+  const DEFAULT_MESSAGES = [
+    {
+      message: 'Welcome to the chatbot project! Send a message using the textbox below.',
+      id: 'id1'
+    }
+  ]
+
   // Will convert chatMessages variable into State, thus it will then update the HTML & will show the updated values in the webpage. Using React.useState(), if we update its inside data, it will also update the HTML. React.useState() returns an array.
   // Did Array Destructuring:
-  const [chatMessages, setChatMessages] = useState([{             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
-    message: 'Welcome to the chatbot project! Send a message using the textbox below.',
-    id: 'id1'
-  }]);
+  const [chatMessages, setChatMessages] = useState(() => {             // useState gives us two values. First value is the current data which is chatMessages. Second is setChatMessages, which is a function {Updater function} to update this data.
+    const saved = localStorage.getItem('messages');
+    return saved ? JSON.parse(saved) : DEFAULT_MESSAGES;
+  });
 
   // By using this, we are able to add more User-robotResponse messages using this object.
   useEffect(() => {
@@ -29,6 +36,12 @@ function App() {
   // const setChatMessages = array[1];               // array[1] is the second value which is a function to update this data. This updater function will update the HTML.
   // Will use JS to convert this upper code's data into these components.
   
+  // For saving the messages even if we refresh the page.
+  useEffect(() => {
+    localStorage.setItem('messages', JSON.stringify(chatMessages));    // For saving the chatMessages.
+  }, [chatMessages]);
+
+
   return (
     <div
       className="app-container">
