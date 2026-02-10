@@ -1,4 +1,5 @@
-.send-button {
+.send-button,
+.clear-button {
     background-color: rgb(25, 135, 84);
     padding: 12px 15px;
     border-radius: 10px;

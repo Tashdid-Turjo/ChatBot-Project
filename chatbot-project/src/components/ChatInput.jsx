@@ -115,6 +115,7 @@ export function ChatInput({ chatMessages, setChatMessages, onClear }) {      // 
         )}
       </button>
       <button
+      className="clear-button"
         onClick={onClear}
       >
         Clear
