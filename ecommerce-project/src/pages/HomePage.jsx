@@ -6,6 +6,8 @@ import CheckmarkIcon from "../../public/images/icons/checkmark.png";
 
 export function HomePage() {
   const [products, setProducts] = useState([]);
+  const [cart, setCart] = useState([]);
+
   useEffect(() => {
     axios.get('http://localhost:3000/api/products')
       .then((response) => {
@@ -14,15 +16,13 @@ export function HomePage() {
     
     axios.get('http://localhost:3000/api/cart-items')
       .then((response) => {
-        console.log(response.data);
+        setCart(response.data);
       })
   }, []);
 
-
-
   return (
     <>
-      <Header />
+      <Header cart = {cart} />
       <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
       <div className="home-page">
         <div className="products-grid">
