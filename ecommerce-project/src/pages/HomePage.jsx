@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Header } from "../components/Header";
 import "./HomePage.css";
 import CheckmarkIcon from "../../public/images/icons/checkmark.png";
+import { formatMoney } from "../utils/money";
 
 export function HomePage({ cart }) {
   const [products, setProducts] = useState([]);
@@ -43,7 +44,7 @@ export function HomePage({ cart }) {
                 </div>
 
                 <div className="product-price">
-                    ${(product.priceCents / 100).toFixed(2)}      {/* 1dollar = 100cents */}
+                    {formatMoney(product.priceCents)}
                 </div>
 
                 <div className="product-quantity-container">
